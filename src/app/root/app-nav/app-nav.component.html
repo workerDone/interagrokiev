@@ -6,7 +6,7 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-toolbar  color="primary"  >Menu</mat-toolbar>
+    <mat-toolbar  color="primary"  routerLink="/" >Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="about-us">
         <mat-icon class="_icon" aria-label="Example icon-button with a heart icon">public</mat-icon>
