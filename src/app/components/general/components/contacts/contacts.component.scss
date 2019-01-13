@@ -1,0 +1,59 @@
+.content{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  &_send{
+    padding-right: 0;
+  }
+  @media screen and (min-width: 700px) {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-around;
+    &_send{
+      padding-right: 20px;
+    }
+  }
+}
+example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+._bnt{
+margin-top: 20px;
+display: flex;
+justify-content: center;
+}
+.thank-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100000000000;
+  height: 100vh;
+  background-color: rgba(#D5D5D5, .5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .thank-popup-wrp {
+    background-color: white;
+    max-width: 760px;
+    width: 100%;
+    border-radius: 10px;
+    z-index: 22100000000000;
+    p {
+      color: #646569;
+      font-size: 22px;
+      text-align: center;
+      font-family: "PT Sans";
+      font-weight: 400;
+      padding: 50px;
+    }
+  }
+}

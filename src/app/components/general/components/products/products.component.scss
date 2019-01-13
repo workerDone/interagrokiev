@@ -1,0 +1,22 @@
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  &_product{
+    width: 200px;
+    margin: 10px 30px;
+    img{
+      width: 200px;
+      height: 200px;
+      border-radius: 30%;
+    }
+    p{
+      font-size: 16px;
+      text-transform: none;
+      text-align: center;
+      margin-bottom: 0;
+    }
+   
+  }
+}

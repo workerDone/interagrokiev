@@ -1,0 +1,19 @@
+.content{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  &_text{
+    max-width: 100%;
+    padding-right: 0;
+  }
+  @media screen and (min-width: 700px) {
+    align-items: flex-start;
+    flex-direction: row;
+    &_text{
+      max-width:60%;
+      padding-right: 20px;
+    }
+  }
+ 
+}

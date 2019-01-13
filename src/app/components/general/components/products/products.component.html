@@ -1,0 +1,6 @@
+<div class="content" >
+  <div class="content_product" *ngFor="let item of data" >
+    <img [src]="item.image" [alt]="item.name">
+    <p>{{item.name }} <br>{{item.details}} </p>
+  </div>
+</div>

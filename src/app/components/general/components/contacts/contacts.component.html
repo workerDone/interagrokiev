@@ -1,0 +1,36 @@
+<div class="content">
+  <app-card class="content_send"[send]="false"></app-card>
+  <app-card [contact]="false">
+    <form novalidate [formGroup]="form" (submit)="onSubmit()">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input ngxPhoneMask matInput placeholder="Phone" formControlName="phone">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput   formControlName="message" placeholder="Message">
+        <mat-hint align="start"><strong>Message box</strong> </mat-hint>
+        <mat-hint align="end">{{form?.controls?.message.value?.length}} / 256</mat-hint>
+      </mat-form-field>
+      <div class="_bnt">
+          <button mat-raised-button color="primary">Submit</button>
+      </div>
+
+    </form>
+  </app-card>
+</div>
+
+<div class="thank-popup" *ngIf="isOpenedSuccessPopup">
+
+    <div class="thank-popup-wrp">
+      <div class="open">
+        <span></span>
+        <span></span>
+      </div>
+      <p>Thank you for your interest in INTER AGROKIEV. These message sent.</p>
+    </div>
+  </div>
