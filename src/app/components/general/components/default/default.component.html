@@ -5,7 +5,7 @@
     fxLayoutAlign="center center"
     fxFlex="auto"
   >
-    <swiper class="swiper-container" fxFlex="auto" [config]="config">
+    <swiper class="swiper-container" #swiper (swiperTouchEnd)="resume($event)" fxFlex="auto" [config]="config">
       <div *ngFor="let slide of slides" class="swiper-slide">
         <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
           <img [src]="slide?.url" />

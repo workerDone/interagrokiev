@@ -1,52 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { HttpClient} from '@angular/common/http';
-import { Observable , throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss']
+  selector: "app-contacts",
+  templateUrl: "./contacts.component.html",
+  styleUrls: ["./contacts.component.scss"]
 })
 export class ContactsComponent implements OnInit {
   form: FormGroup;
   isOpenedSuccessPopup: boolean = false;
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-  ) { }
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zа-яА-ЯA-Z0-9 ]{1,296}')]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      message: ['', [Validators.required, Validators.pattern('[a-zа-яА-ЯA-Z0-9 ]{1,296}'), Validators.maxLength(256)]]
+      name: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
+      phone: ["", [Validators.required]],
+      message: ["", [Validators.required, Validators.maxLength(256)]]
     });
   }
   onSubmit() {
-    console.log(this.form)
-    
     if (this.form.invalid) {
       return;
     }
-    // const formData = new FormData();
 
-    // formData.set('entry.507307065', this.form.value.name );
-    // formData.set('entry.1617704409', this.form.value.email );
-    // formData.set('entry.2113232328', this.form.value.phone );
-    // formData.set('entry.1707151155', this.form.value.message );
+    const body = Object.assign({ id: 250011 }, this.form.value);
 
-    // const path = `/forms/d/e/1FAIpQLSdcd3MhjlJjO6DEi6jPvty_FhGQgNq-UEgvuSV2w1vNMx6AKA/formResponse`;
-    
-    const body = Object.assign({id: 250011}, this.form.value);
-    this.sendEmail(body).toPromise()
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err, 'catch'));
+    this.sendEmail(body)
+      .toPromise()
+      .then(data => console.log(data))
+      .catch(err => console.log(err, "catch"));
     if (this.form.valid) {
       this.successHandler();
     }
@@ -61,13 +46,11 @@ export class ContactsComponent implements OnInit {
     }, 3000);
   }
 
-  sendEmail( body: Object = {}): Observable<any> {
-    const baseApiUrl = 'https://emailinteragrokiev.herokuapp.com/';
+  sendEmail(body: Object = {}): Observable<any> {
+    const baseApiUrl = "https://emailinteragrokiev.herokuapp.com/";
     return this.http
       .post(`${baseApiUrl}`, body)
-      .pipe(
-        catchError((err) => this.formatErrors(err))
-      );
+      .pipe(catchError(err => this.formatErrors(err)));
   }
 
   private formatErrors(error: any) {
@@ -75,7 +58,7 @@ export class ContactsComponent implements OnInit {
 
     try {
       parsedError = error.json();
-    } catch (err) { }
+    } catch (err) {}
 
     return throwError(parsedError || error);
   }
